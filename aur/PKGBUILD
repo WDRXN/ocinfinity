@@ -1,0 +1,26 @@
+# Maintainer: WDRXN <https://github.com/WDRXN>
+
+pkgname=ocinfinity
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="OpenCode limit reset via Cloudflare WARP plus an Anthropic proxy bridge for Claude Code"
+arch=('x86_64')
+url="https://github.com/WDRXN/ocinfinity"
+license=('custom:proprietary')
+makedepends=('cargo')
+depends=('glibc')
+optdepends=('cloudflare-warp-bin: WARP tunnel rate limit reset')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/WDRXN/ocinfinity/archive/v$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cd "$pkgname-$pkgver"
+    cargo build --release --locked
+}
+
+package() {
+    cd "$pkgname-$pkgver"
+    install -Dm755 target/release/ocinfinity "$pkgdir/usr/bin/ocinfinity"
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

@@ -1,0 +1,82 @@
+PROPRIETARY SOURCE-AVAILABLE LICENSE
+Version 1.0 — 2026
+
+Copyright (c) 2026 WDRXN. All rights reserved.
+
+This software, including all source code, binaries, documentation, assets,
+configuration files and any accompanying material (collectively, the
+"Software"), is the exclusive property of WDRXN.
+
+1. NO LICENSE GRANTED
+
+   No license, right, title or interest of any kind is granted to you, whether
+   express, implied, statutory or otherwise. All rights not expressly granted
+   in this document are reserved by WDRXN. The availability of the Software in
+   a public or private repository does not place it in the public domain and
+   does not grant any right to use it.
+
+2. PERMITTED ACTIONS
+
+   The only actions permitted without prior written authorization from WDRXN
+   are:
+
+   (a) viewing the Software in its original repository;
+   (b) cloning or downloading a copy strictly for the purpose of reading and
+       evaluating the Software; and
+   (c) keeping one archival copy of an unmodified download for the sole purpose
+       of retaining the record of what was evaluated.
+
+3. PROHIBITED ACTIONS
+
+   Without prior written authorization from WDRXN, you may not, in whole or in
+   part:
+
+   (a) use, run, execute or deploy the Software, except as required to read it;
+   (b) copy, reproduce, publish, distribute, sublicense, sell, rent, lease or
+       otherwise make the Software available to any third party;
+   (c) modify, adapt, translate, merge or create derivative works from the
+       Software;
+   (d) incorporate the Software or any portion of it into another product,
+       service or codebase;
+   (e) reverse engineer, decompile, disassemble or attempt to derive the source
+       code of any binary form of the Software, except to the extent such
+       restriction is prohibited by applicable law;
+   (f) remove, obscure or alter any copyright, trademark or other proprietary
+       notice; or
+   (g) use the Software, or any information obtained from it, for any
+       commercial purpose.
+
+4. NO WARRANTY
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. WDRXN DOES NOT
+   WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE, UNINTERRUPTED, OR SUITABLE FOR
+   ANY PARTICULAR PURPOSE. YOU ASSUME ALL RISK ARISING FROM ANY PERMITTED
+   ACTION UNDER THIS LICENSE.
+
+5. LIMITATION OF LIABILITY
+
+   IN NO EVENT SHALL WDRXN BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+   IN CONNECTION WITH THE SOFTWARE OR ANY PERMITTED ACTION UNDER THIS LICENSE.
+
+6. TERMINATION
+
+   Any breach of this license automatically and immediately terminates all
+   permissions granted in Section 2. On termination you must destroy every copy
+   of the Software in your possession or control. Sections 1 and 3 to 8 survive
+   termination.
+
+7. AUTHORIZATION
+
+   Requests for any use beyond Section 2, including licensing terms for
+   commercial or redistribution rights, must be made in writing to WDRXN.
+
+8. GOVERNING LAW
+
+   This license is governed by the laws applicable at WDRXN's principal place
+   of business, without regard to conflict-of-law rules. Any dispute shall be
+   brought exclusively before the courts of that jurisdiction.
+
+Contact: https://github.com/WDRXN

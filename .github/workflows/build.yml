@@ -1,0 +1,94 @@
+﻿name: Build and Release
+
+on:
+  push:
+    branches: [main]
+    tags: [v*]
+  pull_request:
+    branches: [main]
+
+# `softprops/action-gh-release` writes release assets, which the default
+# read-only GITHUB_TOKEN cannot do.
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            binary: ocinfinity
+            ext: ''
+            os_name: linux
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            binary: ocinfinity.exe
+            ext: '.exe'
+            os_name: windows
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            binary: ocinfinity
+            ext: ''
+            os_name: macos
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            binary: ocinfinity
+            ext: ''
+            os_name: macos-arm
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Add target
+        run: rustup target add ${{ matrix.target }}
+
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Package
+        run: |
+          mkdir -p release
+          cp target/${{ matrix.target }}/release/${{ matrix.binary }} release/ocinfinity-${{ matrix.os_name }}${{ matrix.ext }}
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          files: release/*
+          draft: false
+          prerelease: ${{ contains(github.ref, 'beta') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Runs once after every target has uploaded, so the manifest covers all of
+  # them. Generated from the uploaded bytes rather than the build tree: that is
+  # what users will actually download and check.
+  checksums:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Generate and attach SHA256SUMS
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          mkdir -p dist
+          gh release download "$TAG" --repo "$REPO" --dir dist
+          rm -f dist/SHA256SUMS
+          ( cd dist && sha256sum * | sort -k2 > SHA256SUMS )
+          cat dist/SHA256SUMS
+          gh release upload "$TAG" dist/SHA256SUMS --repo "$REPO" --clobber

@@ -1,0 +1,29 @@
+PackageIdentifier: WDRXN.ocinfinity
+PackageVersion: 1.0.0
+PackageName: ocinfinity
+PackageDescription: Reset OpenCode rate limits through Cloudflare WARP and bridge Claude Code to OpenCode Zen with automatic recovery
+Publisher: WDRXN
+PublisherUrl: https://github.com/WDRXN/ocinfinity
+Author: WDRXN
+License: Proprietary
+LicenseUrl: https://github.com/WDRXN/ocinfinity/blob/main/LICENSE
+ShortDescription: OpenCode limit reset plus Claude Code proxy bridge
+Moniker: ocinfinity
+Tags:
+  - opencode
+  - claude-code
+  - warp
+  - proxy
+  - rate-limit
+PackageUrl: https://github.com/WDRXN/ocinfinity
+Installers:
+  - Architecture: x64
+    InstallerType: portable
+    InstallerUrl: https://github.com/WDRXN/ocinfinity/releases/download/v1.0.0/ocinfinity-windows.exe
+    InstallerSha256: 7F9CBB2A943CD8D72681F8EB286682A9C8834649430F002AA8279BB66FAD2B57
+    ReleaseDate: 2026-10-25
+    Scope: machine
+    Commands:
+      - ocinfinity
+ManifestType: singleton
+ManifestVersion: 1.6.0

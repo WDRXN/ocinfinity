@@ -1,0 +1,64 @@
+[package]
+name = "ocinfinity"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.75"
+description = "OpenCode Limit Reset + Claude Code Proxy Bridge with intelligent port detection and modular UI"
+authors = ["WDRXN"]
+license = "LicenseRef-Proprietary"
+publish = false
+repository = "https://github.com/WDRXN/ocinfinity"
+homepage = "https://github.com/WDRXN/ocinfinity"
+
+[[bin]]
+name = "ocinfinity"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive", "env"] }
+clap_complete = "4.5"
+colored = "2.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+tokio = { version = "1", features = [
+    "full",
+    "process",
+    "signal",
+    "sync",
+    "time",
+    "macros",
+    "rt-multi-thread",
+    "io-util",
+] }
+axum = { version = "0.8", features = ["json"] }
+# `rustls-tls` instead of the default `native-tls`: keeps the Linux build free
+# of a runtime/dynamic OpenSSL dependency (no `libssl-dev` needed to cross
+# compile, no `libssl.so` needed on the target host).
+reqwest = { version = "0.12", default-features = false, features = [
+    "charset",
+    "http2",
+    "macos-system-configuration",
+    "json",
+    "stream",
+    "gzip",
+    "brotli",
+    "blocking",
+    "rustls-tls",
+] }
+futures = "0.3"
+bytes = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+url = "2.5"
+dirs = "5"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_System_Console"] }
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"

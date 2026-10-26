@@ -1,0 +1,16 @@
+# Linking the Linux target from a Windows host without a cross toolchain.
+#
+# `x86_64-unknown-linux-musl` normally needs a Linux `cc`. Rust ships `rust-lld`
+# (LLVM's ELF linker) plus the musl self-contained startup objects and libc, so
+# pointing the linker at `lld` produces a fully static Linux binary directly
+# from Windows — no MSYS2, no Docker, no `cross`.
+#
+# This is what makes the Linux release buildable on a machine that only has
+# the MSVC Rust toolchain installed.
+[target.x86_64-unknown-linux-musl]
+linker = "rust-lld"
+
+# Keep incremental compilation for debug builds; the release profile in
+# Cargo.toml already sets LTO, codegen-units=1 and strip.
+[build]
+incremental = true
